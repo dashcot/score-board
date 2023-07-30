@@ -72,6 +72,8 @@ class FScoreBoardTest {
         val scoreBoard = FScoreBoard()
         val matchKey1 = MatchKey("Canada", "Mexico")
         val matchKey2 = MatchKey("Spain", "Brazil")
+        scoreBoard.startMatch(matchKey1)
+        scoreBoard.startMatch(matchKey2)
         scoreBoard.updateScore(matchKey1, 1, 0)!!
         val resultList = scoreBoard.getMatches()
         assertEquals(resultList.get(0).matchKey, matchKey1)
@@ -83,6 +85,8 @@ class FScoreBoardTest {
         val scoreBoard = FScoreBoard()
         val matchKey1 = MatchKey("Canada", "Mexico")
         val matchKey2 = MatchKey("Spain", "Brazil")
+        scoreBoard.startMatch(matchKey1)
+        scoreBoard.startMatch(matchKey2)
         scoreBoard.updateScore(matchKey1, 1, 0)!!
         scoreBoard.updateScore(matchKey2, 1, 0)!!
         val resultList = scoreBoard.getMatches()

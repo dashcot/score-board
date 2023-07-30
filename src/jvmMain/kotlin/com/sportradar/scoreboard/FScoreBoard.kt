@@ -1,6 +1,11 @@
 package com.sportradar.scoreboard
 
+import java.time.Instant
+import java.util.HashMap
+
 class FScoreBoard : IFScoreBoard {
+
+    private val boardMap: HashMap<MatchKey, Match> = HashMap<MatchKey, Match>()
 
     /**
      * Starts the match with the score 0 - 0
@@ -10,7 +15,12 @@ class FScoreBoard : IFScoreBoard {
      * matchinfo if the call is succesful or null otherwise
      */
     override fun startMatch(matchKey: MatchKey): MatchInfo? {
-        TODO("Not yet implemented")
+        val newMatch = Match(matchKey, Instant.now())
+        val result = boardMap.putIfAbsent(matchKey, newMatch)
+        if (result == null)
+            return newMatch.toMatchInfo()
+        else
+            return null
     }
 
     /**
@@ -22,7 +32,9 @@ class FScoreBoard : IFScoreBoard {
      * matchinfo if the call is succesful or null otherwise
      */
     override fun updateScore(matchKey: MatchKey, homeTeamScore: Int, awayTeamScore: Int): MatchInfo? {
-        TODO("Not yet implemented")
+        val storedMatch = boardMap.get(matchKey)
+        storedMatch?.updateScore(homeTeamScore, awayTeamScore)
+        return storedMatch?.toMatchInfo()
     }
 
     /**
@@ -30,10 +42,11 @@ class FScoreBoard : IFScoreBoard {
      * Parameters:
      * matchKey - Pair of homeTeam and awayTeam
      * Returns:
-     * matchinfo if the call is succesful or null otherwise
+     * matchInfo if the call is succesful or null otherwise
      */
     override fun finishMatch(matchKey: MatchKey): MatchInfo? {
-        TODO("Not yet implemented")
+        val previousMatch = boardMap.remove(matchKey)
+        return previousMatch?.toMatchInfo()
     }
 
     /**
@@ -44,7 +57,9 @@ class FScoreBoard : IFScoreBoard {
      * started match in the scoreboard.
      */
     override fun getMatches(): List<MatchInfo> {
-        TODO("Not yet implemented")
+        return boardMap.values.sortedWith(compareByDescending<Match> { it.homeTeamScore + it.awayTeamScore }
+            .thenByDescending { it.creationTime })
+            .map { it.toMatchInfo() }
     }
 
 }
