@@ -1,4 +1,4 @@
-package com.sportradar.scoreboard
+package com.sportradar.scoreboard.models
 
 import java.time.Instant
 

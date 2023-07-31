@@ -1,6 +1,7 @@
-import com.sportradar.scoreboard.FScoreBoard
-import com.sportradar.scoreboard.MatchInfo
-import com.sportradar.scoreboard.MatchKey
+package com.sportradar.scoreboard
+
+import com.sportradar.scoreboard.models.MatchInfo
+import com.sportradar.scoreboard.models.MatchKey
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

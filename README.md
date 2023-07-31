@@ -12,7 +12,7 @@ fun main() {
     val runningMatches = scoreBoard.getMatches()
 }
 ```
-
+The methods of library are returning info about matches if the calls are succesfull and null otherwise
 ## Using
 To use the library, you need to perform the following steps.
 

@@ -1,4 +1,7 @@
-package com.sportradar.scoreboard
+package com.sportradar.scoreboard.interfaces
+
+import com.sportradar.scoreboard.models.MatchInfo
+import com.sportradar.scoreboard.models.MatchKey
 
 interface IFScoreBoard {
 

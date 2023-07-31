@@ -1,5 +1,10 @@
 package com.sportradar.scoreboard
 
+import com.sportradar.scoreboard.interfaces.IFScoreBoard
+import com.sportradar.scoreboard.models.Match
+import com.sportradar.scoreboard.models.MatchInfo
+import com.sportradar.scoreboard.models.MatchKey
+import com.sportradar.scoreboard.models.toMatchInfo
 import java.time.Instant
 import java.util.HashMap
 
